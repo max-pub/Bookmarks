@@ -1,0 +1,103 @@
+<script src="DATA.js"></script>
+<!-- <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:300,400' rel='stylesheet' type='text/css'> -->
+<link href='https://fonts.googleapis.com/css?family=Quicksand:400,300' rel='stylesheet' type='text/css'>
+
+<link rel="import" href="list-all.html">
+<link rel="import" href="list-videos.html">
+<link rel="import" href="list-shopping.html">
+<link rel="import" href="list-people.html">
+
+<link rel="import" href="../bower_components/hash-router/hash-route.html">
+<script src="../bower_components/hash-router/hash-links.js"></script>
+<script src="../bower_components/EVENT.js/EVENT.js"></script>
+
+<dom-module id="app-root">
+    <style>
+        :host{
+            display: block;
+        }
+        *{
+            /*font-family: "Josefin Sans";*/
+            font-family: "Quicksand";
+            font-size: 20px;
+            font-weight: 300;
+        }
+        aside{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 150px;
+            bottom: 0;
+            background: #333;
+            color: #eee;
+            padding: 10px;
+        }
+        main{
+            position: absolute;
+            top: 0;
+            left: 170px;
+            right: 0;
+            bottom: 0;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+        [hash=active]{
+            color: red;
+        }
+    </style>
+
+
+    <template>
+        <aside>
+            <a href='#'>All</a>
+            <a href='#maps'>Maps</a>
+            <a href='#apps'>Apps</a>
+            <a href='#code'>Code</a>
+            <a href='#news'>News</a>
+            <a href='#videos'>Videos</a>
+            <a href='#people'>People</a>
+            <a href='#shopping'>Shopping</a>
+            <a href='#other'>Other</a>
+
+        </aside>
+        <main>
+            <hash-route regex='' mode='dom'>
+                <list-all></list-all>
+            </hash-route>
+            <hash-route regex='videos' mode='dom'>
+                <list-videos></list-videos>
+            </hash-route>
+            <hash-route regex='shopping' mode='dom'>
+                <list-shopping></list-shopping>
+            </hash-route>
+            <hash-route regex='people' mode='dom'>
+                <list-people></list-people>
+            </hash-route>
+
+        </main>
+
+        <!-- <hash-route regex="shopping"> -->
+        <!-- </hash-route>         -->
+    </template>
+</dom-module>
+
+
+
+
+
+<script>
+    Polymer({
+        is: "app-root",
+        properties: {},
+        ready: function () {
+            // chrome.bookmarks.search({},function(list){
+            //     console.log('list',list);
+            // });
+        }
+    });
+</script>

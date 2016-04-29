@@ -1,0 +1,118 @@
+<html ng-app='AppTab' ng-csp>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<script src='angular.min.js'></script>
+	<script src='index.js'></script>
+
+	<title>AppTab</title>
+
+	<table class='main' ng-controller='AppCtrl'>
+		<tr>
+			<th>Apps</th>
+			<th>Favorites</th>
+			<th>Facebook</th>
+			<th>Google</th>
+			<th>Images</th>
+			<th>Wikipedia</th>
+			<th>YouTube</th>
+			<th>Downloads</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td id='apps'>
+				<div class='scrollBox'>
+					<div ng-repeat="app in apps | orderBy: 'name'" class='app' ng-click='launch(app)'/>
+						<img src='{{app.icon}}' class='defaultImage'/>
+						<center>{{app.name}}</center>
+					</div>
+				</div>
+			</td>
+
+			<td id='favorites'>
+				<ul class='scrollBox'>
+					<li ng-repeat="item in favorites track by $index">
+						<span class='count'>{{item.count}}</span>
+						<a class='domain' href='http://{{item.domain}}'>{{item.domain}}</a>
+					</li>
+				</ul>
+			</td>
+
+			<td id='facebook'>
+				<div class='scrollBox'>
+					<img ng-repeat="name in facebook track by $index" class='file' ng-click='open(file)'  src='https://graph.facebook.com/{{name}}/picture?width=128&height=128'/>
+				</div>
+			</td>
+
+			<td id='google'>
+				<ul class='scrollBox'>
+					<li ng-repeat="item in google track by $index">
+						<span class='time'>{{item.time}}</span>
+						<span class='query'>{{item.query}}</span>
+					</li>
+				</ul>
+			</td>
+
+			<td id='images'>
+<!-- 				<div class='scrollBox'>
+					<img ng-repeat="file in images | orderBy:'endTime':true" class='file' ng-click='open(file)'  src='{{file.url}}'/>
+				</div>
+ -->			</td>
+
+			<td id='wikipedia'>
+				<ul class='scrollBox'>
+					<li ng-repeat="item in wikipedia track by $index">
+						<span class='time'>{{item.time}}</span>
+						<span class='query'>{{item.title}}</span>
+					</li>
+				</ul>
+			</td>
+
+			<td id='youtube'>
+<!-- 				<div class='scrollBox'>
+					<div ng-repeat="item in youtube track by $index">
+						<img src='https://i.ytimg.com/vi/{{item.id}}/mqdefault.jpg'/>
+						<center>{{item.title}}</center>
+					</div>
+				</div>
+ -->			</td>
+
+			<td id='downloads'>
+				<div class='scrollBox' >
+					<table ng-repeat="file in downloads | orderBy:'endTime':true" class='file {{file.class}}' ng-click='open(file)'>
+						<tr> 
+							<td class='ext'>{{file.ext}}</td>
+							<td class='title'><a href='{{file.url}}'>{{file.name}}</a></td>
+						</tr>
+						<tr> 
+							<td class='size'>{{file.size}}</td>
+							<td class='domain'>{{file.domain}}</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+
+			<td></td>
+		</tr>
+		
+
+	</table>
+</html>
+
+
+
+
+<!-- 
+		<h1>History</h1>
+		<ul id='history'>
+		<li ng-repeat="site in history" class='site' ng-click='call(site)'/>
+			<img src='http://www.google.com/s2/favicons?domain={{site.domain}}' class='defaultImage'/>
+			<span class='time'>{{site.time}}</span>
+			<span class='url'>{{site.domain}}</span>
+			<img src='{{site.icon}}' class='defaultImage'/>
+			<span class='title'>{{site.title}}</span>
+			<span class='url'>{{site.cleanUrl}}</span>
+		</li>
+		</ul>
+
+ -->

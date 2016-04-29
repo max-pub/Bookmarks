@@ -1,0 +1,24 @@
+{
+    "name": "Bookmarks",
+    "description": "see bookmarks",
+    "manifest_version": 2,
+    "version": "0.7",
+    // "background": {
+    //     "scripts": ["background.js"]
+    // },
+    "chrome_url_overrides": {
+        "bookmarks": "index.html"
+    },
+    // "browser_action": {
+    //     "default_icon": {
+    //         "64": "bin/favicon.ico"
+    //     },
+    //     "default_title": "Bookmarks"
+    // },
+    "homepage_url": "https://github.com/max-pub/Bookmarks",
+    "offline_enabled": true,
+    "permissions": ["bookmarks"],
+    "icons": {
+        "256": "bin/favicon.ico"
+    }
+}

@@ -1,0 +1,175 @@
+<html ng-app='AppTab' ng-csp>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<!-- <link rel="stylesheet" type="text/css" href="bootstrap.min.css" /> -->
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<script src='angular.min.js'></script>
+	<script src='index.js'></script>
+
+	<title>AppTab</title>
+
+	<div ng-controller='AppCtrl'>
+
+<!-- 		<h1>Offline Apps</h1>
+		<div ng-repeat="app in offline | orderBy: 'name'" class='app' ng-click='launch(app)'/>
+			<img src='{{app.icon}}'/>
+			<center>{{app.name}}</center>
+		</div>
+ -->
+<!-- 		<h1>App-Links</h1>
+		<div ng-repeat="app in links | orderBy: 'name'" class='app' ng-click='launch(app)'/>
+			<img src='{{app.icon}}' class='defaultImage'/>
+			<center>{{app.name}}</center>
+		</div>
+ -->
+
+
+		<h1>Apps</h1>
+		<div id='apps'>
+			<div ng-repeat="app in apps | orderBy: 'name'" class='picText' ng-click='launch(app)'/>
+				<img src='{{app.icon}}' class='defaultImage'/>
+				<center>{{app.name}}</center>
+			</div>
+		</div>
+
+
+		<h1>Favorites</h1>
+		<ul id='favorites'>
+			<li ng-repeat="item in favorites track by $index">
+				<img src='http://www.google.com/s2/favicons?domain={{item.domain}}' class='defaultImage'/>
+				<!-- <span class='count'>{{item.count}}</span> -->
+				<span class='domain'>{{item.domain}}</span>
+			</li>
+		</ul>
+		
+
+		<h1>Facebook</h1>
+		<div id='facebook'>
+			<div ng-repeat="person in facebook track by $index" class='picText'>
+				<img src='https://graph.facebook.com/{{person.ID}}/picture?width=128&height=128'/>
+				<center>{{person.title}}</center>
+			</div>
+		</div>
+		
+
+		<h1>Google</h1>
+		<ul id='google'>
+			<li ng-repeat="item in google track by $index">
+				<span class='time'>{{item.time | date : 'HH:mm'}}</span>
+				<span class='query'>{{item.query}}</span>
+			</li>
+		</ul>
+		
+
+		<h1>Images</h1>
+		<div id='images'>
+<!-- 			<div>
+				<img />
+				<center></center>
+			</div>
+			onerror="alert('fuck');" onerrorx="this.parentNode.removeChild(this);"
+ -->			
+ 			<img ng-repeat="file in images" ng-src='{{file.url}}' fallback-src="150px.png" />
+		</div>
+
+
+		<h1>Wikipedia</h1>
+		<ul id='google'>
+			<li ng-repeat="item in wikipedia track by $index">
+				<span class='time'>{{item.time | date: 'dd.MMM'}}</span>
+				<span class='query'>{{item.title}}</span>
+			</li>
+		</ul>
+		
+		<h1>Maps</h1>
+		<div id='maps'>
+			<div ng-repeat="map in maps track by $index" class='picText'>
+				<img src="http://maps.googleapis.com/maps/api/staticmap?center={{map.ID}}&size=210x140&scale=1&maptype=terrain&sensor=false&markers=color:blue|{{map.ID}}"/>
+				<center>{{map.query}}</center>
+			</div>
+		</div>
+
+		
+
+
+
+		<h1>Amazon</h1>
+		<div id='amazon'>
+			<img ng-repeat="item in amazon track by $index" style="height:120px;"
+					src='http://images.amazon.com/images/P/{{item.ID}}.01.MZZZZZZZ.jpg'/>
+<!-- 			<div ng-repeat="item in amazon track by $index" class='picText'>
+				<img src='http://images.amazon.com/images/P/{{item.ID}}.01.MZZZZZZZ.jpg'/>
+				<center>{{item.title}}</center>
+			</div>
+<img src="http://maps.googleapis.com/maps/api/staticmap?center=<?=$loc['place']?>&zoom=16&size=1000x200&scale=1&maptype=roadmap&sensor=false&markers=color:blue|<?=$loc['place']?>"/>
+ -->		
+ 		</div>
+		
+
+
+
+		<h1>History</h1>
+		<ul id='history'>
+		<li ng-repeat="site in history" class='site' ng-click='call(site)'/>
+			<!-- <img src='http://www.google.com/s2/favicons?domain={{site.domain}}' class='defaultImage'/> -->
+			<span class='time'>{{site.time}}</span>
+			<span class='url'>{{site.domain}}</span>
+			<!-- <img src='{{site.icon}}' class='defaultImage'/> -->
+			<span class='title'>{{site.title}}</span>
+			<!-- <span class='url'>{{site.cleanUrl}}</span> -->
+		</li>
+		</ul>
+
+
+		<h1>YouTube</h1>
+		<div id='youtube'>
+			<div ng-repeat="item in youtube track by $index">
+				<img src='https://i.ytimg.com/vi/{{item.ID}}/mqdefault.jpg'/>
+				<center>{{item.title}}</center>
+			</div>
+		</div>
+		
+
+		<h1>Downloads</h1>
+		<div id='downloads' >
+			<table ng-repeat="file in downloads | orderBy:'endTime':true" class='file {{file.class}}' ng-click='open(file)'>
+				<tr> 
+					<td class='ext' rowspan='2'>{{file.ext.toUpperCase()}}</td>
+					<td class='title'><a href='{{file.url}}'>{{file.name}}</a></td>
+				</tr>
+				<tr> 
+					<!-- <td class='size'>{{file.size}}</td> -->
+					<td class='domain'>{{file.domain}}</td>
+				</tr>
+<!-- 				<tr> 
+					<td class='time'>{{file.time | date:'dd.MMM'}}</td>
+					<td class='path'>{{file.filename}}</td>
+				</tr>
+ -->			</table>
+		</div>
+
+	</div>
+</html>
+
+
+<!-- 		<h1>Favorites</h1>
+		<ul id='topsites'>
+		<li ng-repeat="site in topsites" class='site' ng-click='call(site)'/>
+			<img src='http://www.google.com/s2/favicons?domain={{site.domain}}' class='defaultImage'/>
+ -->			<!-- <img src='http://g.etfv.co/{{site.url}}' class='defaultImage'/> -->
+<!-- 			{{site.domain}}
+		</li>
+		</ul>
+ -->
+
+
+<!-- 		<li ng-repeat="file in downloads | orderBy:'endTime':true" class='file' ng-click='open(file)'/>
+			<img src='ico/{{file.icon}}'/>
+			<div class='size'>{{file.mb?file.mb+'M':file.kb+'K'}}</div>
+			<div class='ext'>{{file.ext}}</div>
+			<div class='size'>{{file.size}}</div>
+			<div class='size'>{{file.domain}}</div>
+			<div class='title'>{{file.name}}</div>
+			<div class='url'>{{file.cleanUrl}}</div>
+		</li>
+ -->

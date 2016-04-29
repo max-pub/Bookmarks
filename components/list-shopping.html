@@ -1,0 +1,62 @@
+<link rel="import" href="../bower_components/date-format/date-format.html">
+<link rel="import" href="../bower_components/lazy-list/lazy-list.html">
+
+<dom-module id="list-shopping">
+    <style>
+        :host{
+            display: block;
+        }
+        a{
+            display: inline-block;
+            border: 1px solid silver;
+            text-decoration: none;
+            color: black;
+        }
+        a>*{
+            display: block;
+        }
+        a>b{
+            width:100px;
+            height: 50px;
+            overflow: hidden;
+        }
+
+    </style>
+
+
+    <template>
+        <h1>Shopping</h1>
+        <template is="dom-repeat" items="[[months]]" as='month'>
+            <h2> <date-format date='[[month]]' format='MMMM YYYY'></date-format> </h2>
+            <lazy-list list='[[getMonth(month)]]' title$='shopping [[month]]'>
+                <template>
+                    <!-- <div> -->
+                    <a href='[[item.url]]'>
+                        <img src='[[item.image]]'/>
+                        <b>[[item.title]]</b>
+                    </a>
+                    <!-- </div> -->
+                </template>
+            </lazy-list>
+        </template>    
+    </template>
+</dom-module>
+
+
+
+
+
+<script>
+    Polymer({
+        is: "list-shopping",
+        attached: function(){
+            DATA.ready(function(){
+                this.set('months',DATA.getMonths('shopping'));
+            }.bind(this));
+        },
+        getMonth: function(month){
+            return DATA.getMonth('shopping',month);
+        }
+    });
+</script>
+

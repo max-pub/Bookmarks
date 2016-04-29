@@ -1,0 +1,46 @@
+<link rel="import" href="../bower_components/date-format/date-format.html">
+<link rel="import" href="../bower_components/lazy-list/lazy-list.html">
+
+<dom-module id="list-videos">
+    <style>
+        :host{
+            display: block;
+        }
+    </style>
+
+
+    <template>
+        <h1>List Videos</h1>
+        <template is="dom-repeat" items="[[months]]" as='month'>
+            <h2> <date-format date='[[month]]' format='MMMM YYYY'></date-format> </h2>
+            <lazy-list list='[[getMonth(month)]]' title$='videos [[month]]'>
+                <template>
+                    <!-- <div> -->
+                    <a href='[[item.url]]'>
+                        <img src='[[item.image]]'/>
+                    </a>
+                    <!-- </div> -->
+                </template>
+            </lazy-list>
+        </template>    
+    </template>
+</dom-module>
+
+
+
+
+
+<script>
+    Polymer({
+        is: "list-videos",
+        attached: function(){
+            DATA.ready(function(){
+                this.set('months',DATA.getMonths('videos'));
+            }.bind(this));
+        },
+        getMonth: function(month){
+            return DATA.getMonth('videos',month);
+        }
+    });
+</script>
+

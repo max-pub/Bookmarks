@@ -1,0 +1,71 @@
+<link rel="import" href="../bower_components/date-format/date-format.html">
+<link rel="import" href="../bower_components/lazy-list/lazy-list.html">
+
+<dom-module id="list-all">
+    <style>
+        :host{
+            display: block;
+        }
+        date-format{
+            font-variant: small-caps;
+        }
+        i{
+            color: gray;
+        }
+        .hidden{
+            border: 1px solid silver;
+            width: 100%;
+            height: 300px;
+        }
+        a{
+            display: block;
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+
+
+    <template>
+        <h1>List All</h1>
+        <template is="dom-repeat" items="[[months]]" as='month'>
+            <h2> <date-format date='[[month]]' format='MMMM YYYY'></date-format> </h2>
+            <lazy-list list='[[getMonth(month)]]' title$='all [[month]]'>
+                <template>
+                    <a href='[[item.url]]'>
+                        <date-format date='[[item.dateAdded]]' format='DD'></date-format>
+                        <b>[[item.title]]</b>
+                        <i>[[item.domain]]</i>
+                    </a>
+                </template>
+            </lazy-list>
+        </template>    
+    </template>
+</dom-module>
+
+
+
+
+
+<script>
+    Polymer({
+        is: "list-all",
+        properties: {
+            data: {
+                type: Object,
+                observer: 'dataChange'
+            }
+        },
+        attached: function(){
+            // alll = this;
+            DATA.ready(function(){
+                // this.set('list',list);
+                this.set('months',DATA.getMonths('all'));
+                // this.set('MON',DATA.months);
+            }.bind(this));
+        },
+        getMonth: function(month){
+            return DATA.getMonth('all',month);
+        }
+    });
+</script>
+

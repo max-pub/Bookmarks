@@ -1,0 +1,26 @@
+{
+    "name": "Bookmarks",
+    "version": "0.8",
+    "homepage": "https://github.com/max-pub/SurfTime",
+    "authors": [
+        "Max Fechner <max.fechner@gmail.com>"
+    ],
+    "description": "measure your online time",
+    "main": "index.html",
+    "keywords": [
+        "place",
+        "location",
+        "polymer"
+    ],
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "polymer": "Polymer/polymer#~1.0.0"
+    }
+}
